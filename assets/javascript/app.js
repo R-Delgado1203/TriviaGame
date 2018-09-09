@@ -58,17 +58,21 @@ var messages = {
 	finished: "Your Score:"
 }
 
-$("#start-btn").on("click", function () {
-	$(this).hide();
-	$(".instructions").hide();
-	newGame();
+$(document).ready(function () {
+	//start btn click handler
+	$("#start-btn").on("click", function () {
+		$(this).hide();
+		$(".instructions").hide();
+		newGame();
+	});
+	//start over click handler
+	$("#start-over-btn").on("click", function () {
+		$(this).hide();
+		newGame();
+	});
 });
 
-$("#start-over-btn").on("click", function () {
-	$(this).hide();
-	newGame();
-});
-
+//new game function
 function newGame() {
 	$("#final-message").empty();
 	$("#correct-answer").empty();
@@ -81,13 +85,14 @@ function newGame() {
 	newQuestion();
 }
 
+//pull new question from question array obj
 function newQuestion() {
 	$("#message").empty();
 	$("#corrected-answer").empty();
 	answered = true;
 
 	//sets up new questions & choices
-	$("#current-question").html("Question #" + (currentQuestion + 1) + "/" + triviaQuestions.length);
+	$("#current-question").text("Question #" + (currentQuestion + 1) + "/" + triviaQuestions.length);
 	$(".question").text(triviaQuestions[currentQuestion].question);
 	for (var i = 0; i < 4; i++) {
 		var choices = $("<div>");
